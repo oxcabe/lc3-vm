@@ -1,0 +1,6 @@
+.ORIG x3000;						Address in memory where the program will be loaded
+LEA R0, HELLO_STR;					Load the address of HELLO_STR
+PUTs;								Output string pointed by R0 address to the console
+HALT;								Halt the program
+HELLO_STR .STRINGZ "Hello world!"	String stored in the program text segment
+.END								Marks EOF
