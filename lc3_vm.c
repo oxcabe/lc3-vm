@@ -34,7 +34,7 @@ uint16_t reg[R_COUNT];
  * significant 4 bits belong to the opcode.
  */
 enum {
-	OP_BR = 0	// Branch
+	OP_BR = 0,	// Branch
 	OP_ADD,		// Add
 	OP_LD,		// Load
 	OP_ST,		// Store
