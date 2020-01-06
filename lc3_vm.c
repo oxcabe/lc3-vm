@@ -52,6 +52,15 @@ enum {
 	OP_TRAP		// Execute trap
 };
 
+/** Condition flags
+ * {positive,zero,negative} flags for R_COND register
+ */
+enum {
+	FL_POS = 1 << 0,	// Positive
+	FL_ZRO = 1 << 1,	// Zero
+	FL_NEG = 1 << 2		// Negative
+};
+
 int main(int argc, char **argv) {
 	return 0;
 }
