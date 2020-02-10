@@ -1,3 +1,5 @@
+#include <stdbool.h>
+#include <stdio.h>
 #include <stdint.h>
 
 /** Memory
@@ -61,6 +63,33 @@ enum {
 	FL_NEG = 1 << 2		// Negative
 };
 
+// Memory utils
+int mem_read(int addr) {
+	return memory[addr];
+}
+
 int main(int argc, char **argv) {
-	return 0;
+	// Load arguments
+	if (argc < 2) {
+		printf ("Usage: %s [file]\n", argv[0]);
+		return 2;
+	}
+
+	// Set PC to starting position: 0x3000
+	enum { PC_START = 0x3000 };
+	reg[R_PC] = PC_START;
+
+	bool running = true;
+
+	// Pipeline cycle loop
+	while (running) {
+		// IF: Instruction Fetch
+		uint16_t instr = mem_read(reg[R_PC]);
+		uint16_t op = instr >> 12;
+		reg[R_PC]++;
+
+		switch (op) {
+
+		}
+	}
 }
