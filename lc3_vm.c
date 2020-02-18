@@ -68,11 +68,28 @@ int mem_read(int addr) {
 	return memory[addr];
 }
 
+// Program loading
+bool read_image(const char *image_path) {
+	FILE *file = fopen(image_path, "rb");
+	if (!file)
+		return false;
+	// TODO: parse image file
+	fclose(file);
+	return true;
+}
+
 int main(int argc, char **argv) {
 	// Load arguments
 	if (argc < 2) {
 		printf ("Usage: %s [file]\n", argv[0]);
 		return 2;
+	}
+
+	for (int i = 1; i < argc; i++) {
+		if (!read_image(argv[i])) {
+		  printf("ERR: Failed to load image \"%s\" in the virtual machine.\n", argv[i]);
+		  return 1;
+		}
 	}
 
 	// Set PC to starting position: 0x3000
@@ -123,4 +140,5 @@ int main(int argc, char **argv) {
 			break;
 		}
 	}
+	return 0;
 }
